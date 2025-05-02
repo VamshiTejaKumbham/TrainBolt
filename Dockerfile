@@ -11,16 +11,15 @@ RUN apk add --no-cache --update linux-headers \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copy essential Composer files AND the bootstrap directory
-COPY composer.lock composer.json artisan bootstrap /app/
+# Copy project files
+COPY . /app
 
 # Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Copy the rest of your project files
-COPY . /app
-
+# Run Laravel specific commands AFTER composer install
 RUN php artisan optimize:clear \
+    && php artisan package:discover --ansi \
     && php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache
