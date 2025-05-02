@@ -14,8 +14,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Copy project files
 COPY . /app
 
-# Copy custom php-fpm configuration
-COPY /php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+# Copy custom php-fpm configuration (assuming it's in the root)
+COPY php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
 
 # Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
@@ -29,4 +29,4 @@ RUN php artisan optimize:clear \
 
 EXPOSE 9000
 
-CMD ["php-fpm", "-c", "/usr/local/etc/php-fpm.conf", "-y", "/usr/local/etc/php-fpm.d"]
+CMD ["php-fpm", "-c", "/usr/local/etc/php-fpm.conf"]
