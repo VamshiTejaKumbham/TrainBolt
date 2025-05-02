@@ -6,6 +6,8 @@ RUN apk add --no-cache --update linux-headers \
     libpq-dev \
     zlib-dev \
     libpng-dev \
+    nginx \
+    supervisor \
     && docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql bcmath gd
 
 # Install Composer
@@ -17,6 +19,16 @@ COPY . /app
 # Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# Copy Nginx configuration
+COPY docker/nginx.conf /etc/nginx/http.d/default.conf
+
+# Copy Supervisor configuration
+COPY docker/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+
+# Set permissions
+RUN chown -R www-data:www-data /app \
+    && chmod -R 755 /app/storage /app/bootstrap/cache
+
 # Run Laravel specific commands AFTER composer install
 RUN php artisan optimize:clear \
     && php artisan package:discover --ansi \
@@ -24,6 +36,6 @@ RUN php artisan optimize:clear \
     && php artisan route:cache \
     && php artisan view:cache
 
-EXPOSE 9000
+EXPOSE 80
 
-CMD ["php-fpm"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisor.conf"]
