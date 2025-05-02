@@ -4,6 +4,7 @@ WORKDIR /app
 
 RUN apk add --no-cache --update linux-headers \
     libpq-dev \
+    zlib-dev \
     && docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql bcmath gd
 
 COPY composer.lock composer.json /app/
