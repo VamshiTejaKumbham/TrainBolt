@@ -7,10 +7,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="dark:bg-gray-400 dark:white dark:text-black overflow-hidden shadow-sm">
+                <div class="p-6">
                 <div class="mb-6">
-    <a href="{{ route('diet.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 dark:bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-200 uppercase tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-700 focus:bg-indigo-500 dark:focus:bg-indigo-700 focus:ring focus:ring-indigo-300 dark:focus:ring-indigo-500 active:bg-indigo-700 dark:active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+    <a href="{{ route('diet.create') }}" class="inline-flex items-center px-4 py-2  dark:bg-white border border-transparent rounded-md font-Cal font-bold text-l text-black dark:text-black uppercase tracking-widest hover:bg-white dark:hover:bg-gray-100 dark:focus:bg-white-700 focus:ring dark:focus:ring-white active:bg-indigo-700 dark:active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
         {{ __('Add New Meal') }}
     </a>
 </div>
@@ -21,7 +21,7 @@
                         </div>
                     @endif
 
-                    <h3 class="text-lg font-semibold mb-2 dark:text-gray-300">{{ __('Today\'s Summary') }}</h3>
+                    <h3 class="text-lg font-semibold mb-2">{{ __('Today\'s Summary') }}</h3>
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                         <div class="bg-gray-100 dark:bg-gray-700 rounded-md p-4">
                             <span class="font-semibold dark:text-gray-300">{{ __('Calories:') }}</span>
@@ -41,9 +41,9 @@
                         </div>
                     </div>
 
-                    <h3 class="text-lg font-semibold mb-2 dark:text-gray-300">{{ __('Today\'s Meals') }}</h3>
+                    <h3 class="text-lg font-semibold mb-2">{{ __('Today\'s Meals') }}</h3>
                     @if ($dailyMeals->isEmpty())
-                        <p class="dark:text-gray-400">{{ __('No meals logged for today.') }}</p>
+                        <p class="">{{ __('No meals logged for today.') }}</p>
                     @else
                         <ul class="space-y-4">
                             @foreach ($dailyMeals as $meal)
@@ -59,13 +59,13 @@
                                         </p>
                                     </div>
                                     <div class="flex space-x-2">
-                                    <a href="{{ route('diet.edit', $meal) }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 dark:bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-200 uppercase tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-700 focus:bg-indigo-500 dark:focus:bg-indigo-700 focus:ring focus:ring-indigo-300 dark:focus:ring-indigo-500 active:bg-indigo-700 dark:active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                                    <a href="{{ route('diet.edit', $meal) }}" class="inline-flex items-center px-4 py-2  dark:bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-yellow-500 dark:hover:bg-yellow-600 focus:bg-yellow-500 dark:focus:bg-yellow-700 focus:ring dark:focus:ring-yellow-500 active:bg-indigo-700 dark:active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" style=" text-shadow: 1px 1px 2px black;">
     {{ __('Edit') }}
 </a>
                                         <form method="POST" action="{{ route('diet.destroy', $meal) }}">
                                             @csrf
                                             @method('DELETE')
-                                            <x-danger-button onclick="return confirm('{{ __('Are you sure you want to delete this meal?') }}')">
+                                            <x-danger-button onclick="return confirm('{{ __('Are you sure you want to delete this meal?') }}')" >
                                                 {{ __('Delete') }}
                                             </x-danger-button>
                                         </form>
@@ -75,19 +75,19 @@
                         </ul>
                     @endif
 
-                    <h3 class="text-lg font-semibold mt-6 mb-2 dark:text-gray-300">{{ __('Weekly Summary') }}</h3>
+                    <h3 class="text-lg font-semibold mt-6 mb-2">{{ __('Weekly Summary') }}</h3>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-200 dark:text-black">
                                 <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Date') }}</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Calories') }}</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Protein (g)') }}</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Carbs (g)') }}</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">{{ __('Fats (g)') }}</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">{{ __('Date') }}</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">{{ __('Calories') }}</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">{{ __('Protein (g)') }}</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">{{ __('Carbs (g)') }}</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium  uppercase tracking-wider">{{ __('Fats (g)') }}</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
+                            <tbody class="bg-white bg-gray-50 dark:bg-gray-700 text-black divide-y divide-gray-200 dark:divide-gray-600">
                                 @foreach ($weeklySummary as $date => $summary)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap dark:text-gray-300">{{ \Carbon\Carbon::parse($date)->format('D, M j') }}</td>
@@ -101,8 +101,8 @@
                         </table>
                     </div>
 
-                    <h3 class="text-lg font-semibold mt-6 mb-2 dark:text-gray-300">{{ __('Weekly Nutrition Breakdown') }}</h3>
-                    <div class="bg-gray-100 dark:bg-gray-700 rounded-md p-4">
+                    <h3 class="text-lg font-semibold mt-6 mb-2 dark:text-black">{{ __('Weekly Nutrition Breakdown') }}</h3>
+                    <div class="bg-gray-100 dark:bg-gray-200 rounded-md p-4">
                         <canvas id="weeklyNutritionChart"></canvas>
                     </div>
                 </div>

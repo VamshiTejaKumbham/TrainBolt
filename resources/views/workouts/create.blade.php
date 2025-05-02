@@ -6,8 +6,8 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-400 overflow-hidden shadow-xl">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form method="POST" action="{{ route('workouts.store') }}">
                         @csrf
@@ -32,15 +32,15 @@
 
                         <div class="mb-4">
                             <x-input-label for="notes" :value="__('Workout Notes (Optional)')" />
-                            <textarea id="notes" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" name="notes">{{ old('notes') }}</textarea>
+                            <textarea id="notes" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm" name="notes">{{ old('notes') }}</textarea>
                             <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                         </div>
 
-                        <div class="mb-4">
-                            <h3 class="font-semibold dark:text-gray-300 mb-2">{{ __('Exercises') }}</h3>
+                        <div class="mb-4 mt-8">
+                            <h3 class="font-semibold dark:text-black mb-2">{{ __('Exercises') }}</h3>
                             <div id="exercises-container">
                                 <div class="mb-4 exercise-row">
-                                    <div class="grid grid-cols-6 gap-4">
+                                    <div class="grid grid-cols-2 gap-4">
                                         <div>
                                             <x-input-label for="exercises.0.exercise_id" :value="__('Exercise')" />
                                             <select id="exercises.0.exercise_id" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 exercise-select" name="exercises[0][exercise_id]">
@@ -78,19 +78,20 @@
                                         </div>
                                         <div>
                                             <x-input-label for="exercises.0.notes" :value="__('Notes')" />
-                                            <x-text-input type="text" name="exercises[0][notes]" class="block mt-1 w-full" />
+                                            <!-- <x-text-input type="textarea" name="exercises[0][notes]" class="block mt-1 w-full" /> -->
+                                            <textarea name="exercises[0][notes]" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm"></textarea>
                                             <x-input-error :messages="$errors->get('exercises.0.notes')" class="mt-2" />
                                         </div>
                                         <button type="button" class="remove-exercise-row text-red-500 hover:text-red-700 self-end">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12-3v8m-13-3h12a9 9 0 0 1-9 9H4a9 9 0 0 1 9-9z" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                                             </svg>
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" id="add-exercise-row" class="mt-2 text-indigo-600 hover:text-indigo-800">
-                                {{ __('Add Exercise') }}
+                            <button type="button" id="add-exercise-row" class="inline-flex items-center px-4 py-2  dark:bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-yellow-500 dark:hover:bg-yellow-600 focus:bg-yellow-500 dark:focus:bg-yellow-700 focus:ring dark:focus:ring-yellow-500 active:bg-indigo-700 dark:active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" style=" text-shadow: 1px 1px 2px black;">
+                                {{ __(' + Add Another Exercise') }}
                             </button>
                         </div>
 
@@ -116,7 +117,7 @@
                     const newRow = document.createElement('div');
                     newRow.classList.add('mb-4', 'exercise-row');
                     newRow.innerHTML = `
-                        <div class="grid grid-cols-6 gap-4">
+                        <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <x-input-label for="exercises.${exerciseRowCount}.exercise_id" :value="__('Exercise')" />
                                 <select id="exercises.${exerciseRowCount}.exercise_id" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 exercise-select" name="exercises[${exerciseRowCount}][exercise_id]">
@@ -158,9 +159,9 @@
                                 <x-input-error :messages="$errors->get('exercises.${exerciseRowCount}.notes')" class="mt-2" />
                             </div>
                             <button type="button" class="remove-exercise-row text-red-500 hover:text-red-700 self-end">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12-3v8m-13-3h12a9 9 0 0 1-9 9H4a9 9 0 0 1 9-9z" />
-                                </svg>
+                               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
                             </button>
                         </div>
                     `;

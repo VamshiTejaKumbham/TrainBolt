@@ -80,9 +80,9 @@
                                                 <form method="POST" action="{{ route('progress.destroy', $entry) }}" class="inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="inline-flex items-center px-4 py-2  dark:bg-black border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest  dark:hover:bg-gray-600  dark:focus:bg-gray-700 focus:ring dark:focus:ring-gray-500 dark:active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" style=" text-shadow: 1px 1px 2px black;" onclick="return confirm('{{ __('Are you sure you want to delete this entry?') }}')">
+                                                    <x-danger-button type="submit" onclick="return confirm('{{ __('Are you sure you want to delete this entry?') }}')">
                                                         {{ __('Delete') }}
-                                                    </button>
+                                                    </x-danger-button>
                                                 </form>
                                             </td>
                                         </tr>

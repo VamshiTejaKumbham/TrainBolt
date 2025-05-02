@@ -7,10 +7,10 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+            <div class="dark:bg-gray-400 dark:white dark:text-black overflow-hidden shadow-sm">
+                <div class="p-6 ">
                     <div class="mb-6">
-                        <a href="{{ route('workouts.create') }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 dark:bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-200 uppercase tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-700 focus:bg-indigo-500 dark:focus:bg-indigo-700 focus:ring focus:ring-indigo-300 dark:focus:ring-indigo-500 active:bg-indigo-700 dark:active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                        <a href="{{ route('workouts.create') }}" class="inline-flex items-center px-4 py-2  dark:bg-white border border-transparent rounded-md font-Cal font-bold text-l text-black dark:text-black uppercase tracking-widest hover:bg-white dark:hover:bg-gray-100 dark:focus:bg-white-700 focus:ring dark:focus:ring-white active:bg-indigo-700 dark:active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                             {{ __('Log New Workout') }}
                         </a>
                     </div>
@@ -21,7 +21,7 @@
                         </div>
                     @endif
 
-                    <h3 class="text-lg font-semibold mb-4 dark:text-gray-300">{{ __('Workout History') }}</h3>
+                    <h3 class="text-lg font-semibold mb-4">{{ __('Workout History') }}</h3>
 
                     @if ($workouts->isEmpty())
                         <p class="dark:text-gray-400">{{ __('No workouts logged yet.') }}</p>
@@ -65,7 +65,7 @@
                                         @endif
                                     </div>
                                     <div class="flex space-x-2">
-                                        <a href="{{ route('workouts.edit', $workout) }}" class="inline-flex items-center px-4 py-2 bg-indigo-600 dark:bg-indigo-800 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-200 uppercase tracking-widest hover:bg-indigo-500 dark:hover:bg-indigo-700 focus:bg-indigo-500 dark:focus:bg-indigo-700 focus:ring focus:ring-indigo-300 dark:focus:ring-indigo-500 active:bg-indigo-700 dark:active:bg-indigo-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                                        <a href="{{ route('workouts.edit', $workout) }}" class="inline-flex items-center px-4 py-2  dark:bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-yellow-500 dark:hover:bg-yellow-600 focus:bg-yellow-500 dark:focus:bg-yellow-700 focus:ring dark:focus:ring-yellow-500 active:bg-indigo-700 dark:active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" style=" text-shadow: 1px 1px 2px black;">
                                             {{ __('Edit') }}
                                         </a>
                                         <form method="POST" action="{{ route('workouts.destroy', $workout) }}">

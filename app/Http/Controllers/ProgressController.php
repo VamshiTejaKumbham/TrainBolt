@@ -45,7 +45,7 @@ class ProgressController extends Controller
             $heightInMeters = $validatedData['height_cm'] / 100;
             $validatedData['bmi'] = round($validatedData['weight_kg'] / ($heightInMeters * $heightInMeters), 2);
 
-            // Estimate Body Fat Percentage (using a BMI, Age, Gender based formula)
+            // Estimate Body Fat Percentage (using user input)
             if (isset($validatedData['age']) && isset($validatedData['gender'])) {
                 if ($validatedData['gender'] === 'male') {
                     $validatedData['body_fat_percentage'] = round((1.20 * $validatedData['bmi']) + (0.23 * $validatedData['age']) - 16.2, 2);
@@ -53,11 +53,10 @@ class ProgressController extends Controller
                     $validatedData['body_fat_percentage'] = round((1.20 * $validatedData['bmi']) + (0.23 * $validatedData['age']) - 5.4, 2);
                 }
 
-                // Rough estimate of Muscle Mass (as a percentage of Fat-Free Mass)
+                // Rough estimate of Muscle Mass
                 if (isset($validatedData['body_fat_percentage'])) {
                     $fatMass = $validatedData['weight_kg'] * ($validatedData['body_fat_percentage'] / 100);
                     $fatFreeMass = $validatedData['weight_kg'] - $fatMass;
-                    // Assuming a rough 45% of FFM is muscle mass (this is a very general assumption)
                     $validatedData['muscle_mass'] = round($fatFreeMass * 0.45, 2);
                 }
             }

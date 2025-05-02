@@ -6,8 +6,8 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-400 overflow-hidden shadow-xl">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form method="POST" action="{{ route('workouts.update', $workout) }}">
                         @csrf
@@ -37,12 +37,12 @@
                             <x-input-error :messages="$errors->get('notes')" class="mt-2" />
                         </div>
 
-                        <div class="mb-4">
-                            <h3 class="font-semibold dark:text-gray-300 mb-2">{{ __('Exercises') }}</h3>
+                        <div class="mb-4 mt-8">
+                            <h3 class="font-semibold dark:text-black mb-2">{{ __('Exercises') }}</h3>
                             <div id="exercises-container">
     @foreach (old('exercises', $workoutExercisesData ?? []) as $index => $exerciseData)
         <div class="mb-4 exercise-row">
-            <div class="grid grid-cols-7 gap-4">
+            <div class="grid grid-cols-2 gap-4">
                 <div>
                     <x-input-label for="exercises.{{ $index }}.exercise_id" :value="__('Exercise')" />
                     <select id="exercises.{{ $index }}.exercise_id" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 exercise-select" name="exercises[{{ $index }}][exercise_id]">
@@ -84,16 +84,16 @@
                     <x-input-error :messages="$errors->get('exercises.' . $index . '.notes')" class="mt-2" />
                 </div>
                 <button type="button" class="remove-exercise-row text-red-500 hover:text-red-700 self-end">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12-3v8m-13-3h12a9 9 0 0 1-9 9H4a9 9 0 0 1 9-9z" />
-                    </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </button>
             </div>
         </div>
+        <hr class="mt-3 mb-3">
     @endforeach
 </div>
-                            <button type="button" id="add-exercise-row" class="mt-2 text-indigo-600 hover:text-indigo-800">
-                                {{ __('Add Exercise') }}
+                            <button type="button" id="add-exercise-row" class="inline-flex items-center px-4 py-2  dark:bg-yellow-400 border border-transparent rounded-md font-semibold text-xs text-white dark:text-white uppercase tracking-widest hover:bg-yellow-500 dark:hover:bg-yellow-600 focus:bg-yellow-500 dark:focus:bg-yellow-700 focus:ring dark:focus:ring-yellow-500 active:bg-indigo-700 dark:active:bg-yellow-900 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150" style=" text-shadow: 1px 1px 2px black;">
+                                {{ __('+ Add Another Exercise') }}
                             </button>
                         </div>
 
@@ -119,10 +119,10 @@
         const newRow = document.createElement('div');
         newRow.classList.add('mb-4', 'exercise-row');
         newRow.innerHTML = `
-            <div class="grid grid-cols-7 gap-4">
+            <div class="grid grid-cols-2 gap-4">
                 <div>
-                    <label for="exercises.${exerciseRowCount}.exercise_id" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Exercise') }}</label>
-                    <select id="exercises.${exerciseRowCount}.exercise_id" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 exercise-select" name="exercises[${exerciseRowCount}][exercise_id]">
+                    <label for="exercises.${exerciseRowCount}.exercise_id" class="block font-medium text-sm text-gray-700 dark:text-black">{{ __('Exercise') }}</label>
+                    <select id="exercises.${exerciseRowCount}.exercise_id" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-black focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 exercise-select" name="exercises[${exerciseRowCount}][exercise_id]">
                         <option value="">{{ __('Custom Exercise') }}</option>
                         @foreach ($exercises as $exercise)
                             <option value="{{ $exercise->id }}">{{ $exercise->name }}</option>
@@ -131,38 +131,38 @@
                     <span class="mt-2 text-red-500 error-exercises.${exerciseRowCount}.exercise_id"></span>
                 </div>
                 <div>
-                    <label for="exercises.${exerciseRowCount}.custom_exercise_name" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Custom Name') }}</label>
+                    <label for="exercises.${exerciseRowCount}.custom_exercise_name" class="block font-medium text-sm text-gray-700 dark:text-black">{{ __('Custom Name') }}</label>
                     <input type="text" name="exercises[${exerciseRowCount}][custom_exercise_name]" class="block mt-1 w-full custom-exercise-name dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" />
                     <span class="mt-2 text-red-500 error-exercises.${exerciseRowCount}.custom_exercise_name"></span>
                 </div>
                 <div>
-                    <label for="exercises.${exerciseRowCount}.sets" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Sets') }}</label>
+                    <label for="exercises.${exerciseRowCount}.sets" class="block font-medium text-sm text-gray-700 dark:text-black">{{ __('Sets') }}</label>
                     <input type="number" name="exercises[${exerciseRowCount}][sets]" class="block mt-1 w-full dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" min="1" />
                     <span class="mt-2 text-red-500 error-exercises.${exerciseRowCount}.sets"></span>
                 </div>
                 <div>
-                    <label for="exercises.${exerciseRowCount}.reps" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Reps') }}</label>
+                    <label for="exercises.${exerciseRowCount}.reps" class="block font-medium text-sm text-gray-700 dark:text-black">{{ __('Reps') }}</label>
                     <input type="number" name="exercises[${exerciseRowCount}][reps]" class="block mt-1 w-full dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" min="1" />
                     <span class="mt-2 text-red-500 error-exercises.${exerciseRowCount}.reps"></span>
                 </div>
                 <div>
-                    <label for="exercises.${exerciseRowCount}.weight" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Weight (kg)') }}</label>
+                    <label for="exercises.${exerciseRowCount}.weight" class="block font-medium text-sm text-gray-700 dark:text-black">{{ __('Weight (kg)') }}</label>
                     <input type="number" step="0.01" name="exercises[${exerciseRowCount}][weight]" class="block mt-1 w-full dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" min="0" />
                     <span class="mt-2 text-red-500 error-exercises.${exerciseRowCount}.weight"></span>
                 </div>
                 <div>
-                    <label for="exercises.${exerciseRowCount}.duration" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Duration (seconds)') }}</label>
+                    <label for="exercises.${exerciseRowCount}.duration" class="block font-medium text-sm text-gray-700 dark:text-black">{{ __('Duration (seconds)') }}</label>
                     <input type="number" name="exercises[${exerciseRowCount}][duration]" class="block mt-1 w-full dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" min="1" />
                     <span class="mt-2 text-red-500 error-exercises.${exerciseRowCount}.duration"></span>
                 </div>
                 <div>
-                    <label for="exercises.${exerciseRowCount}.notes" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Notes') }}</label>
+                    <label for="exercises.${exerciseRowCount}.notes" class="block font-medium text-sm text-gray-700 dark:text-black">{{ __('Notes') }}</label>
                     <input type="text" name="exercises[${exerciseRowCount}][notes]" class="block mt-1 w-full dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" />
                     <span class="mt-2 text-red-500 error-exercises.${exerciseRowCount}.notes"></span>
                 </div>
                 <button type="button" class="remove-exercise-row text-red-500 hover:text-red-700 self-end">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12-3v8m-13-3h12a9 9 0 0 1-9 9H4a9 9 0 0 1 9-9z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>

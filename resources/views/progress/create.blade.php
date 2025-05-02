@@ -6,47 +6,47 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-gray-50 dark:bg-gray-200 dark:text-black overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6">
                     <form method="POST" action="{{ route('progress.store') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-4">
-                            <label for="tracked_at" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Tracking Date') }}</label>
-                            <input id="tracked_at" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" type="datetime-local" name="tracked_at" value="{{ old('tracked_at', now()->format('Y-m-d\TH:i')) }}" required autofocus />
+                            <label for="tracked_at" class="block font-medium text-sm">{{ __('Tracking Date') }}</label>
+                            <input id="tracked_at" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm" type="datetime-local" name="tracked_at" value="{{ old('tracked_at', now()->format('Y-m-d\TH:i')) }}" required autofocus />
                             @error('tracked_at')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="weight_kg" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Weight (kg)') }}</label>
-                            <input id="weight_kg" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" type="number" step="0.01" name="weight_kg" value="{{ old('weight_kg') }}" />
+                            <label for="weight_kg" class="block font-medium text-sm ">{{ __('Weight (kg)') }}</label>
+                            <input id="weight_kg" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm" type="number" step="0.01" name="weight_kg" value="{{ old('weight_kg') }}" />
                             @error('weight_kg')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="height_cm" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Height (cm)') }}</label>
-                            <input id="height_cm" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" type="number" step="0.01" name="height_cm" value="{{ old('height_cm') }}" />
+                            <label for="height_cm" class="block font-medium text-sm ">{{ __('Height (cm)') }}</label>
+                            <input id="height_cm" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm" type="number" step="0.01" name="height_cm" value="{{ old('height_cm') }}" />
                             @error('height_cm')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="age" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Age') }}</label>
-                            <input id="age" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" type="number" name="age" value="{{ old('age') }}" required min="1" max="120" />
+                            <label for="age" class="block font-medium text-sm">{{ __('Age') }}</label>
+                            <input id="age" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm" type="number" name="age" value="{{ old('age') }}" required min="1" max="120" />
                             @error('age')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="gender" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Gender') }}</label>
-                            <select id="gender" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" name="gender" required>
+                            <label for="gender" class="block font-medium text-sm">{{ __('Gender') }}</label>
+                            <select id="gender" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm" name="gender" required>
                                 <option value="">{{ __('Select Gender') }}</option>
                                 <option value="male" {{ old('gender') === 'male' ? 'selected' : '' }}>{{ __('Male') }}</option>
                                 <option value="female" {{ old('gender') === 'female' ? 'selected' : '' }}>{{ __('Female') }}</option>
@@ -57,24 +57,24 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="body_fat_percentage" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Body Fat (%) (Optional)') }}</label>
-                            <input id="body_fat_percentage" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" type="number" step="0.01" name="body_fat_percentage" value="{{ old('body_fat_percentage') }}" />
+                            <label for="body_fat_percentage" class="block font-medium text-sm">{{ __('Body Fat (%) (Optional)') }}</label>
+                            <input id="body_fat_percentage" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm" type="number" step="0.01" name="body_fat_percentage" value="{{ old('body_fat_percentage') }}" />
                             @error('body_fat_percentage')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="muscle_mass" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Muscle Mass (Optional)') }}</label>
-                            <input id="muscle_mass" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" type="number" step="0.01" name="muscle_mass" value="{{ old('muscle_mass') }}" />
+                            <label for="muscle_mass" class="block font-medium text-sm">{{ __('Muscle Mass (Optional)') }}</label>
+                            <input id="muscle_mass" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm" type="number" step="0.01" name="muscle_mass" value="{{ old('muscle_mass') }}" />
                             @error('muscle_mass')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                             @enderror
                         </div>
 
                         <div class="mb-4">
-                            <label for="photo" class="block font-medium text-sm text-gray-700 dark:text-gray-300">{{ __('Progress Photo (Optional)') }}</label>
-                            <input id="photo" class="block mt-1 w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600" type="file" name="photo" accept="image/*" />
+                            <label for="photo" class="block font-medium text-sm">{{ __('Progress Photo (Optional)') }}</label>
+                            <input id="photo" class="block mt-1 w-full dark:bg-black text-black dark:text-white focus:border-black dark:focus:border-white focus:ring-black dark:focus:ring-white rounded-md shadow-sm" type="file" name="photo" accept="image/*" />
                             @error('photo')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ $message }}</p>
                             @enderror
