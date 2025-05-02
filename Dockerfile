@@ -3,6 +3,7 @@ FROM php:8.2-fpm-alpine
 WORKDIR /app
 
 RUN apk add --no-cache --update linux-headers \
+    libpq-dev \
     && docker-php-ext-install -j$(nproc) pdo_mysql pdo_pgsql bcmath gd
 
 COPY composer.lock composer.json /app/
