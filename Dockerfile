@@ -15,7 +15,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY . /app
 
 # Copy custom php-fpm configuration
-COPY docker/php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
+COPY /php-fpm.conf /usr/local/etc/php-fpm.d/www.conf
 
 # Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
