@@ -16,9 +16,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Copy project files
 COPY . /app
 
-# Install Composer dependencies
-RUN composer install --no-dev --optimize-autoloader
-
 # Copy Nginx configuration
 COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 
@@ -28,6 +25,9 @@ COPY docker/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 # Set permissions
 RUN chown -R www-data:www-data /app \
     && chmod -R 755 /app/storage /app/bootstrap/cache
+
+# Try to find the php-fpm executable (TEMPORARY)
+RUN ls -l /usr/sbin
 
 # Run Laravel specific commands AFTER composer install
 RUN php artisan optimize:clear \
