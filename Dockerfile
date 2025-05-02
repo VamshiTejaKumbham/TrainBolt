@@ -11,10 +11,13 @@ RUN apk add --no-cache --update linux-headers \
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY composer.lock composer.json /app/
+# Copy essential Composer files AND artisan
+COPY composer.lock composer.json artisan /app/
+
+# Install Composer dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Copy the entire project AFTER Composer install
+# Copy the rest of your project files
 COPY . /app
 
 RUN php artisan optimize:clear \
