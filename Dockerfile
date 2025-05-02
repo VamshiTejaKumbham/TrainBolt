@@ -14,6 +14,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY composer.lock composer.json /app/
 RUN composer install --no-dev --optimize-autoloader
 
+# Copy the entire project AFTER Composer install
 COPY . /app
 
 RUN php artisan optimize:clear \
